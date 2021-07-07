@@ -1,98 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { latLng, tileLayer } from 'leaflet';
-
-import { ChartType, Stat, Chat, Transaction } from './dashboard.model';
-
-import { statData, revenueChart, salesAnalytics, sparklineEarning, sparklineMonthly, chatData, transactions } from './data';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { single, multi } from '../charts/charts.data';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  encapsulation: ViewEncapsulation.None
 })
+export class DashboardComponent  {
+   
+  public single: any[];
+  public multi: any[]; 
 
-/**
- * Dashboard Component
- */
-export class DashboardComponent implements OnInit {
-
-  term: any;
-  chatData: Chat[];
-  transactions: Transaction[];
-  statData: Stat[];
-
-  constructor(public formBuilder: FormBuilder) {
-  }
-
-  // bread crumb items
-  breadCrumbItems: Array<{}>;
-
-  revenueChart: ChartType;
-  salesAnalytics: ChartType;
-  sparklineEarning: ChartType;
-  sparklineMonthly: ChartType;
-
-  // Form submit
-  chatSubmit: boolean;
-
-  formData: FormGroup;
-
-
-  options = {
-    layers: [
-      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
-    ],
-    zoom: 6,
-    center: latLng(46.879966, -121.726909)
+  public showXAxis = true;
+  public showYAxis = true;
+  public gradient = false;
+  public showLegend = false;
+  public showXAxisLabel = true;
+  public xAxisLabel = 'Country';
+  public showYAxisLabel = true;
+  public yAxisLabel = 'Population';
+  public colorScheme = {
+    domain: ['#2F3E9E', '#D22E2E', '#378D3B', '#0096A6', '#F47B00', '#606060']
   };
 
-  ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'Nazox' }, { label: 'Dashboard', active: true }];
-    this.formData = this.formBuilder.group({
-      message: ['', [Validators.required]],
-    });
-    this._fetchData();
+  constructor() {
+    Object.assign(this, {single, multi}); 
+  }
+  
+  public onSelect(event) {
+    console.log(event);
   }
 
-  private _fetchData() {
-    this.revenueChart = revenueChart;
-    this.salesAnalytics = salesAnalytics;
-    this.sparklineEarning = sparklineEarning;
-    this.sparklineMonthly = sparklineMonthly;
-    this.chatData = chatData;
-    this.transactions = transactions;
-    this.statData = statData;
-  }
 
-  /**
-   * Returns form
-   */
-  get form() {
-    return this.formData.controls;
-  }
-
-  /**
-   * Save the message in chat
-   */
-  messageSave() {
-    const message = this.formData.get('message').value;
-    const currentDate = new Date();
-    if (this.formData.valid && message) {
-      // Message Push in Chat
-      this.chatData.push({
-        align: 'right',
-        name: 'Ricky Clark',
-        message,
-        time: currentDate.getHours() + ':' + currentDate.getMinutes()
-      });
-
-      // Set Form Data Reset
-      this.formData = this.formBuilder.group({
-        message: null
-      });
-    }
-
-    this.chatSubmit = true;
-  }
 }

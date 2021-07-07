@@ -1,21 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-typography',
   templateUrl: './typography.component.html',
-  styleUrls: ['./typography.component.scss']
+  styleUrls: ['./typography.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-
-/**
- * UI-video component
- */
 export class TypographyComponent implements OnInit {
-  // bread crumb items
-  breadCrumbItems: Array<{}>;
 
   constructor() { }
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'UI Elements' }, { label: 'Typography', active: true }];
   }
+
 }

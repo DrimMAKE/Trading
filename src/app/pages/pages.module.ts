@@ -1,67 +1,70 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { UiModule } from '../shared/ui/ui.module';
-import { WidgetModule } from '../shared/widget/widget.module';
-
-import { PagesRoutingModule } from './pages-routing.module';
-
-import { NgbNavModule, NgbDropdownModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgApexchartsModule } from 'ng-apexcharts';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { FullCalendarModule } from '@fullcalendar/angular';
-import { DndModule } from 'ngx-drag-drop';
+import { FormsModule } from '@angular/forms';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { ChatComponent } from './chat/chat.component';
-import { EcommerceModule } from './ecommerce/ecommerce.module';
-import { KanbanComponent } from './kanban/kanban.component';
-import { EmailModule } from './email/email.module';
-import { UIModule } from './ui/ui.module';
-import { IconsModule } from './icons/icons.module';
-import { ChartModule } from './chart/chart.module';
-import { FormModule } from './form/form.module';
-import { TablesModule } from './tables/tables.module';
-import { MapsModule } from './maps/maps.module';
-
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true,
-  wheelSpeed: 0.3
+  suppressScrollX: true
 };
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { PipesModule } from '../theme/pipes/pipes.module';
+import { routing } from './pages.routing';
+import { PagesComponent } from './pages.component';
+
+import { HeaderComponent } from '../theme/components/header/header.component';
+import { FooterComponent } from '../theme/components/footer/footer.component';
+import { SidebarComponent } from '../theme/components/sidebar/sidebar.component';
+import { VerticalMenuComponent } from '../theme/components/menu/vertical-menu/vertical-menu.component';
+import { HorizontalMenuComponent } from '../theme/components/menu/horizontal-menu/horizontal-menu.component';
+import { BreadcrumbComponent } from '../theme/components/breadcrumb/breadcrumb.component';
+import { BackTopComponent } from '../theme/components/back-top/back-top.component';
+import { FullScreenComponent } from '../theme/components/fullscreen/fullscreen.component';
+import { ApplicationsComponent } from '../theme/components/applications/applications.component';
+import { MessagesComponent } from '../theme/components/messages/messages.component';
+import { UserMenuComponent } from '../theme/components/user-menu/user-menu.component';
+import { FlagsMenuComponent } from '../theme/components/flags-menu/flags-menu.component';
+import { SideChatComponent } from '../theme/components/side-chat/side-chat.component';
+import { FavoritesComponent } from '../theme/components/favorites/favorites.component';
+import { BlankComponent } from './blank/blank.component';
+import { SearchComponent } from './search/search.component';
+import { MatCheckboxModule } from '../../../node_modules/@angular/material';
+
 
 @NgModule({
-  declarations: [DashboardComponent, CalendarComponent, ChatComponent, KanbanComponent],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
-    PagesRoutingModule,
-    UiModule,
-    UIModule,
-    Ng2SearchPipeModule,
-    NgbNavModule,
-    NgbDropdownModule,
-    NgbTooltipModule,
-    NgApexchartsModule,
     PerfectScrollbarModule,
-    DndModule,
-    FullCalendarModule,
-    EcommerceModule, EmailModule,
-    IconsModule,
-    ChartModule,
-    FormModule,
-    TablesModule,
-    MapsModule,
-    LeafletModule,
-    WidgetModule
+    MatCheckboxModule,
+    ToastrModule.forRoot(), 
+    NgbModule.forRoot(),
+    MultiselectDropdownModule,
+    PipesModule,
+    routing
   ],
-  providers: [
+  declarations: [
+    PagesComponent,
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
+    VerticalMenuComponent,
+    HorizontalMenuComponent,
+    BreadcrumbComponent,
+    BackTopComponent,
+    FullScreenComponent,
+    ApplicationsComponent,
+    MessagesComponent,
+    UserMenuComponent,
+    FlagsMenuComponent,
+    SideChatComponent,
+    FavoritesComponent,
+    BlankComponent,
+    SearchComponent
+  ],
+  providers:[
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

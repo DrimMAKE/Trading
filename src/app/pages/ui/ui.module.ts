@@ -1,54 +1,44 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-import { UiModule } from '../../shared/ui/ui.module';
-
-import {
-  NgbAlertModule, NgbCarouselModule, NgbDropdownModule, NgbModalModule, NgbProgressbarModule,
-  NgbTooltipModule, NgbPopoverModule, NgbPaginationModule, NgbNavModule, NgbAccordionModule,
-  NgbCollapseModule, NgbButtonsModule
-} from '@ng-bootstrap/ng-bootstrap';
-import { Ng5SliderModule } from 'ng5-slider';
-
-import { UiRoutingModule } from './ui-routing.module';
-import { AlertsComponent } from './alerts/alerts.component';
+import { RouterModule } from '@angular/router';
+import { DirectivesModule } from '../../theme/directives/directives.module';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { CardsComponent } from './cards/cards.component';
-import { CarouselComponent } from './carousel/carousel.component';
-import { DropdownsComponent } from './dropdowns/dropdowns.component';
-import { GridComponent } from './grid/grid.component';
-import { ImagesComponent } from './images/images.component';
-import { ModalsComponent } from './modals/modals.component';
-import { ProgressbarComponent } from './progressbar/progressbar.component';
+import { ComponentsComponent } from './components/components.component';
+import { TabsAccordionsComponent } from './tabs-accordions/tabs-accordions.component';
+import { IconsComponent } from './icons/icons.component';
+import { ListGroupComponent } from './list-group/list-group.component';
+import { MediaObjectsComponent } from './media-objects/media-objects.component';
 import { TypographyComponent } from './typography/typography.component';
-import { GeneralComponent } from './general/general.component';
-import { VideoComponent } from './video/video.component';
-import { TabsComponent } from './tabs/tabs.component';
-import { SweetalertComponent } from './sweetalert/sweetalert.component';
-import { RangesliderComponent } from './rangeslider/rangeslider.component';
+
+
+export const routes = [
+  { path: '', redirectTo: 'buttons', pathMatch: 'full'},
+  { path: 'buttons', component: ButtonsComponent, data: { breadcrumb: 'Buttons' } },
+  { path: 'cards', component: CardsComponent, data: { breadcrumb: 'Cards' } },
+  { path: 'components', component: ComponentsComponent, data: { breadcrumb: 'Components' } },
+  { path: 'icons', component: IconsComponent, data: { breadcrumb: 'Icons' } },
+  { path: 'list-group', component: ListGroupComponent, data: { breadcrumb: 'List Group' } },
+  { path: 'media-objects', component: MediaObjectsComponent, data: { breadcrumb: 'Media Objects' } },
+  { path: 'tabs-accordions', component: TabsAccordionsComponent, data: { breadcrumb: 'Tabs & Accordions' } },
+  { path: 'typography', component: TypographyComponent, data: { breadcrumb: 'Typography' } }
+];
 
 @NgModule({
-  // tslint:disable-next-line: max-line-length
-  declarations: [AlertsComponent, ButtonsComponent, CardsComponent, CarouselComponent, DropdownsComponent, GridComponent, ImagesComponent, ModalsComponent, ProgressbarComponent, TypographyComponent, GeneralComponent, VideoComponent, TabsComponent, SweetalertComponent, RangesliderComponent],
   imports: [
     CommonModule,
-    UiRoutingModule,
-    FormsModule,
-    Ng5SliderModule,
-    NgbAlertModule,
-    NgbCarouselModule,
-    NgbDropdownModule,
-    NgbModalModule,
-    NgbProgressbarModule,
-    NgbTooltipModule,
-    NgbButtonsModule,
-    UiModule,
-    NgbPopoverModule,
-    NgbPaginationModule,
-    NgbNavModule,
-    NgbAccordionModule,
-    NgbCollapseModule,
+    DirectivesModule,
+    RouterModule.forChild(routes)
   ],
+  declarations: [
+    ButtonsComponent,
+    CardsComponent,
+    ComponentsComponent,
+    TabsAccordionsComponent,
+    IconsComponent,
+    ListGroupComponent,
+    MediaObjectsComponent,
+    TypographyComponent
+  ]
 })
-export class UIModule { }
+export class UiModule { }

@@ -1,27 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-buttons',
   templateUrl: './buttons.component.html',
-  styleUrls: ['./buttons.component.scss']
+  styleUrls: ['./buttons.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-
-/**
- * UI-buttons component
- */
 export class ButtonsComponent implements OnInit {
-  // bread crumb items
-  breadCrumbItems: Array<{}>;
 
-  model = {
-    left: true,
-    middle: false,
-    right: false
-  };
-  radio = 1;
   constructor() { }
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'UI Elements' }, { label: 'Buttons', active: true }];
   }
+
 }

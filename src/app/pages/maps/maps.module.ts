@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { GoogleMapsComponent } from './google-maps/google-maps.component';
+import { LeafletMapsComponent } from './leaflet-maps/leaflet-maps.component';
 
-import { UiModule } from '../../shared/ui/ui.module';
-
-import { MapsRoutingModule } from './maps-routing.module';
-import { GoogleComponent } from './google/google.component';
-import { LeafletComponent } from './leaflet/leaflet.component';
+export const routes = [
+  { path: '', redirectTo: 'googlemaps', pathMatch: 'full'},
+  { path: 'googlemaps', component: GoogleMapsComponent, data: { breadcrumb: 'Google Maps' } },
+  { path: 'leafletmaps', component: LeafletMapsComponent, data: { breadcrumb: 'Leaflet Maps' } }
+];
 
 @NgModule({
-  declarations: [GoogleComponent, LeafletComponent],
   imports: [
     CommonModule,
-    MapsRoutingModule,
-    UiModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAbvyBxmMbFhrzP9Z8moyYr6dCr-pzjhBE'
-    }),
-    LeafletModule
+    AgmCoreModule,
+    RouterModule.forChild(routes)
+  ],
+  declarations: [ 
+    GoogleMapsComponent, 
+    LeafletMapsComponent 
   ]
 })
 export class MapsModule { }

@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { DirectivesModule } from '../../theme/directives/directives.module';
+import { BasicTablesComponent } from './basic-tables/basic-tables.component';
 
-import { UiModule } from '../../shared/ui/ui.module';
-import { NgbPaginationModule, NgbTypeaheadModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-
-import { TablesRoutingModule } from './tables-routing.module';
-import { AdvancedSortableDirective } from './advancedtable/advanced-sortable.directive';
-import { BasicComponent } from './basic/basic.component';
-import { AdvancedtableComponent } from './advancedtable/advancedtable.component';
+export const routes = [
+  { path: '', redirectTo: 'basic-tables', pathMatch: 'full'},
+  { path: 'basic-tables', component: BasicTablesComponent, data: { breadcrumb: 'Basic Tables' } },
+  { path: 'dynamic-tables', loadChildren: './dynamic-tables/dynamic-tables.module#DynamicTablesModule', data: { breadcrumb: 'Dynamic Tables' } }
+];
 
 @NgModule({
-  declarations: [BasicComponent, AdvancedtableComponent, AdvancedSortableDirective],
   imports: [
     CommonModule,
-    TablesRoutingModule,
-    UiModule,
-    NgbDropdownModule,
-    NgbPaginationModule,
-    NgbTypeaheadModule,
-    FormsModule
+    NgxDatatableModule,
+    DirectivesModule,
+    RouterModule.forChild(routes)
+  ],
+  declarations: [
+    BasicTablesComponent
   ]
 })
 export class TablesModule { }
